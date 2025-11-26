@@ -25,7 +25,7 @@ import lombok.Setter;
 @AllArgsConstructor
 public class ReynaEntity {
     @Id
-    @GeneratedValue(strategy=GenerationType.AUTO)
+    @GeneratedValue(strategy=GenerationType.IDENTITY)
     private long id;
     @NotNull
     @Size(min = 3, max = 1024)

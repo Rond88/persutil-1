@@ -20,7 +20,7 @@ import net.ausiasmarch.persutil.service.ReynaService;
 
 @CrossOrigin(origins = "*", allowedHeaders = "*")
 @RestController
-@RequestMapping("/reyna")
+@RequestMapping("/frasesmotivacionales")
 public class ReynaApi {
 
     @Autowired
