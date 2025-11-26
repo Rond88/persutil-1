@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: database:3306
--- Tiempo de generación: 10-11-2025 a las 11:28:03
--- Versión del servidor: 8.4.5
--- Versión de PHP: 8.2.28
+-- Tiempo de generacion: 10-11-2025 a las 11:28:03
+-- Version del servidor: 8.4.5
+-- Version de PHP: 8.2.28
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -30,14 +30,35 @@ CREATE TABLE `blog` (
   `fecha_modificacion` datetime DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf32 COLLATE=utf32_unicode_ci;
 
+-- --------------------------------------------------------
+
 --
--- Índices para tablas volcadas
+-- Estructura de tabla para la tabla `alfonso_respuesta`
+--
+
+CREATE TABLE `alfonso_respuesta` (
+  `id` bigint NOT NULL,
+  `autor` varchar(128) COLLATE utf32_unicode_ci NOT NULL,
+  `contenido` longtext COLLATE utf32_unicode_ci NOT NULL,
+  `publicado` tinyint(1) NOT NULL DEFAULT '1',
+  `fecha_creacion` datetime NOT NULL,
+  `fecha_modificacion` datetime DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf32 COLLATE=utf32_unicode_ci;
+
+--
+-- Indices para tablas volcadas
 --
 
 --
 -- Indices de la tabla `blog`
 --
 ALTER TABLE `blog`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indices de la tabla `alfonso_respuesta`
+--
+ALTER TABLE `alfonso_respuesta`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -48,5 +69,11 @@ ALTER TABLE `blog`
 -- AUTO_INCREMENT de la tabla `blog`
 --
 ALTER TABLE `blog`
+  MODIFY `id` bigint NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT de la tabla `alfonso_respuesta`
+--
+ALTER TABLE `alfonso_respuesta`
   MODIFY `id` bigint NOT NULL AUTO_INCREMENT;
 COMMIT;
