@@ -3,7 +3,6 @@ package net.ausiasmarch.persutil.api;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -31,12 +30,6 @@ public class ReynaApi {
             @PathVariable Long numPosts
     ) {
         return ResponseEntity.ok(oReynaService.createRandom(numPosts));
-    }
-
-    //prueba QUITAR
-    @GetMapping("/hola")
-    public ResponseEntity<String> hola() {
-        return new ResponseEntity<>("\"Hola desde el blog\"", HttpStatus.OK);
     }
 
     @GetMapping("/{id}")
