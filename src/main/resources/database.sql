@@ -90,5 +90,7 @@ ALTER TABLE `frasesmotivacionales`
 -- AUTO_INCREMENT de la tabla `frasesmotivacionales`
 --
 ALTER TABLE `frasesmotivacionales`
+
   MODIFY `id` bigint NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  
 COMMIT;
