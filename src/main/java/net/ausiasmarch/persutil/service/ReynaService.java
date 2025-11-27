@@ -1,6 +1,7 @@
 package net.ausiasmarch.persutil.service;
 
 import java.time.LocalDateTime;
+import java.util.Random;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -15,6 +16,34 @@ public class ReynaService {
     @Autowired
     ReynaRepository oReynaRepository;
 
+    private static final String[] FRASES = {
+            "La vida es aquello que te va sucediendo mientras te empeñas en hacer otros planes",
+            "El único modo de hacer un gran trabajo es amar lo que haces",
+            "La imaginación es más importante que el conocimiento",
+            "No cuentes los días, haz que los días cuenten",
+            "La mejor venganza es un éxito masivo",
+            "El éxito es la suma de pequeños esfuerzos repetidos día tras día",
+            "La única forma de hacer un gran trabajo es amar lo que haces",
+            "No es la montaña lo que conquistamos, sino a nosotros mismos",
+            "El fracaso es la oportunidad de empezar de nuevo de forma más inteligente",
+            "La creatividad es la inteligencia divirtiéndose"
+    };
+
+    private static final String[] AUTORES = {
+            "John Lennon",
+            "Steve Jobs",
+            "Albert Einstein",
+            "Muhammad Ali",
+            "Frank Sinatra",
+            "Robert Collier",
+            "Steve Jobs",
+            "Edmund Hillary",
+            "Henry Ford",
+            "Albert Einstein"
+    };
+
+    private final Random random = new Random();
+
     public ReynaEntity get(Long id) {
         return oReynaRepository.findById(id).orElse(null);
     }
@@ -27,7 +56,7 @@ public class ReynaService {
     }
 
     public Long update(ReynaEntity oReynaEntity) {
-        ReynaEntity existingReyna= oReynaRepository.findById(oReynaEntity.getId())
+        ReynaEntity existingReyna = oReynaRepository.findById(oReynaEntity.getId())
                 .orElseThrow(() -> new RuntimeException("Reyna not found"));
         existingReyna.setFrase(oReynaEntity.getFrase());
         existingReyna.setAutor(oReynaEntity.getAutor());
@@ -48,5 +77,21 @@ public class ReynaService {
 
     public Long count() {
         return oReynaRepository.count();
+    }
+
+    public Long createRandom(Long cantidad) {
+        for (int i = 0; i < cantidad; i++) {
+            int indiceAleatorio = random.nextInt(FRASES.length);
+
+            ReynaEntity nuevaReyna = new ReynaEntity();
+            nuevaReyna.setFrase(FRASES[indiceAleatorio]);
+            nuevaReyna.setAutor(AUTORES[indiceAleatorio]);
+            nuevaReyna.setEsPublica(true);
+            nuevaReyna.setFechaCreacion(LocalDateTime.now());
+            nuevaReyna.setFechaModificacion(null);
+
+            oReynaRepository.save(nuevaReyna);
+        }
+        return cantidad;
     }
 }

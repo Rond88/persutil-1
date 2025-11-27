@@ -26,6 +26,13 @@ public class ReynaApi {
     @Autowired
     ReynaService oReynaService;
 
+     @GetMapping("/rellena/{numPosts}")
+    public ResponseEntity<Long> rellenaBlog(
+            @PathVariable Long numPosts
+    ) {
+        return ResponseEntity.ok(oReynaService.createRandom(numPosts));
+    }
+
     //prueba QUITAR
     @GetMapping("/hola")
     public ResponseEntity<String> hola() {
