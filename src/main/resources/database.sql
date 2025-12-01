@@ -1,24 +1,24 @@
 -- phpMyAdmin SQL Dump
--- version 5.2.1
+-- version 5.2.2
 -- https://www.phpmyadmin.net/
 --
--- Host: database:3306
--- Generation Time: Dec 01, 2025 at 07:22 AM
--- Server version: 8.1.0
--- PHP Version: 8.2.10
+-- Servidor: database:3306
+-- Tiempo de generación: 01-12-2025 a las 11:14:46
+-- Versión del servidor: 8.4.5
+-- Versión de PHP: 8.2.28
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
 SET time_zone = "+00:00";
 
 --
--- Database: `contante`
+-- Base de datos: `persutildb`
 --
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `alcalde`
+-- Estructura de tabla para la tabla `alcalde`
 --
 
 CREATE TABLE `alcalde` (
@@ -36,7 +36,7 @@ CREATE TABLE `alcalde` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `alfonso_respuesta`
+-- Estructura de tabla para la tabla `alfonso_respuesta`
 --
 
 CREATE TABLE `alfonso_respuesta` (
@@ -51,7 +51,7 @@ CREATE TABLE `alfonso_respuesta` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `blog`
+-- Estructura de tabla para la tabla `blog`
 --
 
 CREATE TABLE `blog` (
@@ -66,7 +66,7 @@ CREATE TABLE `blog` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `calinesculistacompra`
+-- Estructura de tabla para la tabla `calinesculistacompra`
 --
 
 CREATE TABLE `calinesculistacompra` (
@@ -84,7 +84,7 @@ CREATE TABLE `calinesculistacompra` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `castanyera`
+-- Estructura de tabla para la tabla `castanyera`
 --
 
 CREATE TABLE `castanyera` (
@@ -100,22 +100,37 @@ CREATE TABLE `castanyera` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `garcia`
+-- Estructura de tabla para la tabla `frasesmotivacionales`
 --
 
-CREATE TABLE `garcia` (
+CREATE TABLE `frasesmotivacionales` (
   `id` bigint NOT NULL,
-  `titulo` varchar(1000) COLLATE utf32_unicode_ci NOT NULL,
-  `objetivo` varchar(1000) COLLATE utf32_unicode_ci NOT NULL,
-  `fecha_inicio` datetime NOT NULL,
-  `fecha_final` datetime NOT NULL,
-  `progreso` varchar(1000) COLLATE utf32_unicode_ci NOT NULL
+  `frase` varchar(1024) CHARACTER SET utf32 COLLATE utf32_unicode_ci NOT NULL,
+  `autor` varchar(255) CHARACTER SET utf32 COLLATE utf32_unicode_ci NOT NULL DEFAULT 'Anónimo',
+  `es_publica` tinyint(1) NOT NULL,
+  `fecha_creacion` datetime NOT NULL,
+  `fecha_modificacion` datetime DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf32 COLLATE=utf32_unicode_ci;
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `ideas`
+-- Estructura de tabla para la tabla `garcia`
+--
+
+CREATE TABLE `garcia` (
+  `id` bigint NOT NULL,
+  `titulo` varchar(1000) CHARACTER SET utf32 COLLATE utf32_unicode_ci NOT NULL,
+  `objetivo` varchar(1000) CHARACTER SET utf32 COLLATE utf32_unicode_ci NOT NULL,
+  `fecha_inicio` datetime NOT NULL,
+  `fecha_final` datetime NOT NULL,
+  `progreso` varchar(1000) CHARACTER SET utf32 COLLATE utf32_unicode_ci NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf32 COLLATE=utf32_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `ideas`
 --
 
 CREATE TABLE `ideas` (
@@ -131,20 +146,10 @@ CREATE TABLE `ideas` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `pallas`
+-- Estructura de tabla para la tabla `pallas`
 --
 
-This branch has conflicts that must be resolv
-
--- --------------Ronald------------------------------------------
-
---
--- Estructura de tabla para la tabla `frasesmotivacionales`
---
-
-
-
-  CREATE TABLE `calinesculistacompra` (
+CREATE TABLE `pallas` (
   `id` bigint NOT NULL,
   `titulo` varchar(100) DEFAULT NULL,
   `contenido` longtext,
@@ -156,7 +161,7 @@ This branch has conflicts that must be resolv
 -- --------------------------------------------------------
 
 --
--- Table structure for table `receta`
+-- Estructura de tabla para la tabla `receta`
 --
 
 CREATE TABLE `receta` (
@@ -171,7 +176,7 @@ CREATE TABLE `receta` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `recurso`
+-- Estructura de tabla para la tabla `recurso`
 --
 
 CREATE TABLE `recurso` (
@@ -186,14 +191,14 @@ CREATE TABLE `recurso` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `sempertegui_pelicula`
+-- Estructura de tabla para la tabla `sempertegui_pelicula`
 --
 
 CREATE TABLE `sempertegui_pelicula` (
   `id` bigint NOT NULL,
-  `nombre` varchar(255) COLLATE utf32_unicode_ci NOT NULL,
-  `genero` varchar(255) COLLATE utf32_unicode_ci NOT NULL,
-  `director` varchar(255) COLLATE utf32_unicode_ci NOT NULL,
+  `nombre` varchar(255) CHARACTER SET utf32 COLLATE utf32_unicode_ci NOT NULL,
+  `genero` varchar(255) CHARACTER SET utf32 COLLATE utf32_unicode_ci NOT NULL,
+  `director` varchar(255) CHARACTER SET utf32 COLLATE utf32_unicode_ci NOT NULL,
   `puntuacion` int NOT NULL,
   `anyo` year NOT NULL,
   `fecha_creacion` datetime NOT NULL,
@@ -203,7 +208,7 @@ CREATE TABLE `sempertegui_pelicula` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `soares`
+-- Estructura de tabla para la tabla `soares`
 --
 
 CREATE TABLE `soares` (
@@ -217,7 +222,7 @@ CREATE TABLE `soares` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `tarea`
+-- Estructura de tabla para la tabla `tarea`
 --
 
 CREATE TABLE `tarea` (
@@ -232,196 +237,38 @@ CREATE TABLE `tarea` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf32 COLLATE=utf32_unicode_ci;
 
 --
--- Indexes for dumped tables
---
-
---
--- Indexes for table `alcalde`
---
-ALTER TABLE `alcalde`
-  ADD PRIMARY KEY (`id`);
-
---
--- Indexes for table `alfonso_respuesta`
---
-ALTER TABLE `alfonso_respuesta`
-  ADD PRIMARY KEY (`id`);
-
---
--- Indexes for table `blog`
---
-ALTER TABLE `blog`
-  ADD PRIMARY KEY (`id`);
-
---
--- Indexes for table `calinesculistacompra`
---
-ALTER TABLE `calinesculistacompra`
-  ADD PRIMARY KEY (`id`);
-
---
--- Indexes for table `castanyera`
---
-ALTER TABLE `castanyera`
-  ADD PRIMARY KEY (`id`);
-
---
--- Indexes for table `garcia`
---
-ALTER TABLE `garcia`
-  ADD PRIMARY KEY (`id`);
-
---
--- Indexes for table `ideas`
---
-ALTER TABLE `ideas`
-  ADD PRIMARY KEY (`id`);
-
---
--- Indexes for table `pallas`
---
-ALTER TABLE `pallas`
-  ADD PRIMARY KEY (`id`);
-
---
--- Indexes for table `receta`
---
-ALTER TABLE `receta`
-  ADD PRIMARY KEY (`id`);
-
---
--- Indexes for table `recurso`
---
-ALTER TABLE `recurso`
-  ADD PRIMARY KEY (`id`);
-
---
--- Indexes for table `sempertegui_pelicula`
---
-ALTER TABLE `sempertegui_pelicula`
-  ADD PRIMARY KEY (`id`),
-  ADD UNIQUE KEY `nombre` (`nombre`);
-
---
--- Indexes for table `soares`
---
-ALTER TABLE `soares`
-  ADD PRIMARY KEY (`id`);
-
---
--- Indexes for table `tarea`
---
-ALTER TABLE `tarea`
-  ADD PRIMARY KEY (`id`);
-
---
--- AUTO_INCREMENT for dumped tables
---
-
---
--- AUTO_INCREMENT for table `alcalde`
---
-ALTER TABLE `alcalde`
-  MODIFY `id` bigint NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT for table `alfonso_respuesta`
---
-ALTER TABLE `alfonso_respuesta`
-  MODIFY `id` bigint NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT for table `blog`
---
-ALTER TABLE `blog`
-  MODIFY `id` bigint NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT for table `calinesculistacompra`
---
-ALTER TABLE `calinesculistacompra`
-  MODIFY `id` bigint NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT for table `castanyera`
---
-ALTER TABLE `castanyera`
-  MODIFY `id` bigint NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT for table `garcia`
---
-ALTER TABLE `garcia`
-  MODIFY `id` bigint NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT for table `ideas`
---
-ALTER TABLE `ideas`
-  MODIFY `id` bigint NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT for table `pallas`
---
-ALTER TABLE `pallas`
-  MODIFY `id` bigint NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT for table `receta`
---
-ALTER TABLE `receta`
-  MODIFY `id` bigint NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT for table `recurso`
---
-ALTER TABLE `recurso`
-  MODIFY `id` bigint NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT for table `sempertegui_pelicula`
---
-ALTER TABLE `sempertegui_pelicula`
-  MODIFY `id` bigint NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT for table `soares`
---
-ALTER TABLE `soares`
-  MODIFY `id` bigint NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT for table `tarea`
---
-ALTER TABLE `tarea`
-  MODIFY `id` bigint NOT NULL AUTO_INCREMENT;
-COMMIT;
-
--- --------------Ronald------------------------------------------
-
---
--- Estructura de tabla para la tabla `frasesmotivacionales`
---
-
-CREATE TABLE `frasesmotivacionales` (
-  `id` bigint NOT NULL,
-  `frase` varchar(1024) COLLATE utf32_unicode_ci NOT NULL,
-  `autor` varchar(255) COLLATE utf32_unicode_ci NOT NULL DEFAULT 'Anónimo',
-  `es_publica` tinyint(1) NOT NULL,
-  `fecha_creacion` datetime NOT NULL,
-  `fecha_modificacion` datetime DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf32 COLLATE=utf32_unicode_ci;
-
---
--- Volcado de datos para la tabla `frasesmotivacionales`
---
-
-INSERT INTO `frasesmotivacionales` (`id`, `frase`, `autor`, `es_publica`, `fecha_creacion`, `fecha_modificacion`) VALUES
-(1, 'Hola', 'Anónimo', 1, '2025-11-26 11:24:55', NULL);
-
---
 -- Índices para tablas volcadas
 --
+
+--
+-- Indices de la tabla `alcalde`
+--
+ALTER TABLE `alcalde`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indices de la tabla `alfonso_respuesta`
+--
+ALTER TABLE `alfonso_respuesta`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indices de la tabla `blog`
+--
+ALTER TABLE `blog`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indices de la tabla `calinesculistacompra`
+--
+ALTER TABLE `calinesculistacompra`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indices de la tabla `castanyera`
+--
+ALTER TABLE `castanyera`
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Indices de la tabla `frasesmotivacionales`
@@ -430,12 +277,139 @@ ALTER TABLE `frasesmotivacionales`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indices de la tabla `garcia`
+--
+ALTER TABLE `garcia`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indices de la tabla `ideas`
+--
+ALTER TABLE `ideas`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indices de la tabla `pallas`
+--
+ALTER TABLE `pallas`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indices de la tabla `receta`
+--
+ALTER TABLE `receta`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indices de la tabla `recurso`
+--
+ALTER TABLE `recurso`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indices de la tabla `sempertegui_pelicula`
+--
+ALTER TABLE `sempertegui_pelicula`
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `nombre` (`nombre`);
+
+--
+-- Indices de la tabla `soares`
+--
+ALTER TABLE `soares`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indices de la tabla `tarea`
+--
+ALTER TABLE `tarea`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- AUTO_INCREMENT de las tablas volcadas
 --
+
+--
+-- AUTO_INCREMENT de la tabla `alcalde`
+--
+ALTER TABLE `alcalde`
+  MODIFY `id` bigint NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT de la tabla `alfonso_respuesta`
+--
+ALTER TABLE `alfonso_respuesta`
+  MODIFY `id` bigint NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT de la tabla `blog`
+--
+ALTER TABLE `blog`
+  MODIFY `id` bigint NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT de la tabla `calinesculistacompra`
+--
+ALTER TABLE `calinesculistacompra`
+  MODIFY `id` bigint NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT de la tabla `castanyera`
+--
+ALTER TABLE `castanyera`
+  MODIFY `id` bigint NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT de la tabla `frasesmotivacionales`
 --
 ALTER TABLE `frasesmotivacionales`
+  MODIFY `id` bigint NOT NULL AUTO_INCREMENT;
 
-  MODIFY `id` bigint NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+--
+-- AUTO_INCREMENT de la tabla `garcia`
+--
+ALTER TABLE `garcia`
+  MODIFY `id` bigint NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT de la tabla `ideas`
+--
+ALTER TABLE `ideas`
+  MODIFY `id` bigint NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT de la tabla `pallas`
+--
+ALTER TABLE `pallas`
+  MODIFY `id` bigint NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT de la tabla `receta`
+--
+ALTER TABLE `receta`
+  MODIFY `id` bigint NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT de la tabla `recurso`
+--
+ALTER TABLE `recurso`
+  MODIFY `id` bigint NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT de la tabla `sempertegui_pelicula`
+--
+ALTER TABLE `sempertegui_pelicula`
+  MODIFY `id` bigint NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT de la tabla `soares`
+--
+ALTER TABLE `soares`
+  MODIFY `id` bigint NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT de la tabla `tarea`
+--
+ALTER TABLE `tarea`
+  MODIFY `id` bigint NOT NULL AUTO_INCREMENT;
+COMMIT;
