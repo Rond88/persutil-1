@@ -88,6 +88,22 @@ ALTER TABLE `alfonso_respuesta`
 ALTER TABLE `blog`
   MODIFY `id` bigint NOT NULL AUTO_INCREMENT;
 
+CREATE TABLE `alcalde` (
+  `id` bigint NOT NULL,
+  `titulo` varchar(255) COLLATE utf32_unicode_ci NOT NULL,
+  `autor` varchar(255) COLLATE utf32_unicode_ci NOT NULL,
+  `genero` varchar(100) COLLATE utf32_unicode_ci NOT NULL,
+  `reseña` longtext COLLATE utf32_unicode_ci NOT NULL,
+  `valoracion` int NOT NULL,
+  `publicado` tinyint(1) NOT NULL DEFAULT '1',
+  `destacado` tinyint(1) NOT NULL DEFAULT '0',
+  `fecha_lectura` date NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf32 COLLATE=utf32_unicode_ci;
+
+ALTER TABLE `alcalde`
+  ADD PRIMARY KEY (`id`);
+
+ALTER TABLE `alcalde`
 --
 -- AUTO_INCREMENT de la tabla `alfonso_respuesta`
 --
